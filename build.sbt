@@ -15,3 +15,4 @@ libraryDependencies ++= Seq(
 )
 libraryDependencies += "com.typesafe.play" %% "play-json" % PlayVersion
 libraryDependencies += "com.lihaoyi" %% "os-lib" % "0.7.8"
+libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.4.2"
