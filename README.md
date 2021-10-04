@@ -43,9 +43,14 @@ CaptionTagger is the main application's object which contains the main function.
  
 CaptionManager is the object which makes a request to the youtube API, maps the result into the list of strings, then ask the NounChecker to select the nouns and passes the noun list to the ResultFileCreator.
 
-The http request is made in the `makeRequestAndManageResponse` function. The response body is then passed to the `processResponseBody` fuction, where the plain captions are tried to be extracted (if the video exists they are placed in the fields called "utf8"). Then the result if filtered from \n and " chars and the potential nouns are marked. Then by using the `NounChecker.filterNouns` function nouns are selected and the following parameters are passed to the `ResultFileCreator` object: (token, raw captions, plain captions, list of nouns).
+The http request is made in the `makeRequestAndManageResponse` function. The response body is then passed to the `processResponseBody` fuction, where the plain captions are tried to be extracted (if the video exists they are placed in the fields called "utf8"). Then the result if filtered from \n and " chars and the potential nouns are marked. Then by using the `NounChecker.filterNouns` function nouns are selected and the following parameters are passed to the `ResultFileCreator` object: (token, raw captions, plain captions, list of nouns). If a video with certain token does not exists an exception is reported.
  
  *NounChecker*
+ 
+ The object is responsible for all noun-related operations. The object uses only some simplified metrics to determine whether a word is noun or not. At first I wanted to use some internet dictionary API, however the ones I found were either request limited or required paid substribtion. Another more reliable way of finding a noun is using a local dictionary database. 
+ 
+ Function `markPotentialNouns` marks words that are preceded by the articles or personal pronouns as potential nouns.
+ Function `filterNouns` filters words that end with noun endings and are marked as potential nouns barring they: do not end with an adverb ending, are not passive versions of the verbs, are not words like same/next which occur quite often after the definite article. 
  
  *ResultFileCreator*
  
