@@ -74,3 +74,27 @@ The http request is made in the `makeRequestAndManageResponse` function. The res
  The object returns a tuple which contains (success marker, links, plain article, raw article)
 
 **Tests**
+
+*NounCheckerTest*
+
+`Filter noun-like words`
+The test checks whether `NounChecker.filterNouns()` function selects words which may be nouns (ex. posses a noun ending, contains a noun marker).
+
+`Mark potential nouns`
+The test checks if words that are preceded by possessive pronouns/articles are marked as potential nouns.
+
+*WikipediaRequestTest*
+
+`No wikipedia article`
+
+The test checks whether the fact that there is no article about the word 'ggf' exists is marked in the logs.
+
+`Word's ambiguity`
+The test checks whether the fact that there is no specific article about the 'great' word is marked in the logs. (as there is e.x. an article about great britain, great depression,...)
+
+
+*YoutubeRequestTest*
+
+`Wrong youtube token`
+
+The test checks whether the fact that there is no youtube video with a token 'qwerty' is marked in the logs.
