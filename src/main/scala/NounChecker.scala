@@ -1,6 +1,6 @@
 object NounChecker {
 
-  def prepareWordList(wordList: List[String]): List[String] = {
+  def markPotentialNouns(wordList: List[String]): List[String] = {
     wordList.map(elem => elem
       .replace(",", "")
       .replace(".","")
@@ -14,7 +14,7 @@ object NounChecker {
       .replace(" their ", s" ${Configuration.NOUN_POINTER}"))
   }
 
-  def isNoun(words: String): List[String] = {
+  def filterNouns(words: String): List[String] = {
     words.split(' ').filter(word => {
       if(word.endsWith("ity") || word.endsWith("ism") || word.endsWith("ion"))  true
       else if(word.startsWith(Configuration.NOUN_POINTER) && !word.endsWith("est") && !word.endsWith("ly") && !word.endsWith("ed") && !word.equals(s"${Configuration.NOUN_POINTER}next") && !word.equals(s"${Configuration.NOUN_POINTER}same")) true
