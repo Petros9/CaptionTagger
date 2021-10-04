@@ -55,9 +55,22 @@ The http request is made in the `makeRequestAndManageResponse` function. The res
  
  *ResultFileCreator*
  
+ The object is responsible for: gathering the wikipedia's articles for the given nouns, writing the results into the results.json file.
  
+ The first task is fullfiled in the `apply` function as foreach loop assings a wikipedia request result to the each noun. If the wikipedia request went alright the whole result is written into the file by function `saveResults`. If an exception occured in the process a report is written into the logs.txt file. 
+ 
+ In the `saveResults` function given results are mapped into a JSON object and written into the result file.
  
  *WikipediaManager*
  
+ The object is responsible for making a http request to the wikipedia API and then processing the response. 
+ 
+ The request is made `apply` function. The result is passed to the `processWikipediaResponse` function.
+ 
+ The response is parsed into a JSON format. If an exception was thrown it means that there was no wikipedia article for this word.
+ If the field name `type` in the response containes a value `disambiguation` it means that the word refferred to multiple articles. 
+ If everything went alright links and plain article is extracted from the response and returned.
+ 
+ The object returns a tuple which contains (success marker, links, plain article, raw article)
 
 **Tests**
