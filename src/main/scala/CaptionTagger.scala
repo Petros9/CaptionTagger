@@ -1,12 +1,13 @@
 
-//import java.util.Scanner
+import java.nio.file.NoSuchFileException
+import java.util.Scanner
 
 object CaptionTagger extends App {
 
-  // TODO - zrobienie testow
-  // TODO - zrobienie dokumentacji
-  os.remove(os.Path(Configuration.LOGS_PATH) / "logs.txt")
-  //val scanner = new Scanner(System.in)
-  //File(scanner.nextLine())
-  EntryFileOpener("/Users/piotrswiderski/IdeaProjects/CaptionTagger/examples/files.txt")
+  val scanner = new Scanner(System.in)
+  try{
+    EntryFileOpener(Configuration.ENTRY_FILES_PATH+scanner.nextLine())
+  } catch {
+    case _:NoSuchFileException => println("No file with that name was provided")
+  }
 }

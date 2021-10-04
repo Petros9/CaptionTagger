@@ -7,4 +7,5 @@ object Configuration {
   val NOUN_POINTER = "*"
   val LOGS_PATH = "/Users/piotrswiderski/IdeaProjects/CaptionTagger/logs"
   val RESULT_PATH = "/Users/piotrswiderski/IdeaProjects/CaptionTagger/results"
+  val ENTRY_FILES_PATH ="/Users/piotrswiderski/IdeaProjects/CaptionTagger/examples/"
 }

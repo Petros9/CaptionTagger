@@ -6,7 +6,7 @@ object WikipediaManager {
   def returnLinkWithArticle(parsedResponse: JsValue): (String, String, String, String) = {
     val link = parsedResponse \\ "page"
     val article = parsedResponse \\ "extract"
-    (Configuration.WIKIPEDIA_OK, link.toString(), article.mkString, parsedResponse.toString())
+    (Configuration.WIKIPEDIA_OK, link.toList.mkString, article.mkString, parsedResponse.toString())
   }
 
   def processWikipediaResponse(noun: String, response: String): (String, String, String, String) = {
