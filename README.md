@@ -20,6 +20,24 @@ This folder contains a file named logs.txt that gathers all exception reports th
 This folder contains a file results.json where the end result list of (token, raw captions, plain captions, raw article, plain article, links) is written. I have decided to use this format because it is both readable for a human and easily processable for a computer.
 
 **Code**
-
+ 
+ The code is based on 8 Scala objects.
+ 
+ *Configuration*
+ 
+ *ExceptionLogger*
+ 
+ *CaptionTagger*
+ 
+ *EntryFileOpener*
+ 
+ *CaptionManager*
+ 
+ *NounChecker*
+ 
+ *ResultFileCreator*
+ 
+ *WikipediaManager*
+ 
 
 **Tests**
