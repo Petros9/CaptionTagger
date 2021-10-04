@@ -6,7 +6,7 @@ import scalaj.http.Http
 
 object CaptionManager {
 
-  def filterNouns(response: String, token: String): Unit = {
+  def processResponseBody(response: String, token: String): Unit = {
     try {
       val captions = Json.parse(response) \\ "utf8"
       val mappedCaptions = captions.map(elem => elem.toString().replace(raw"\n", " ").replace("\"", ""))
@@ -22,7 +22,7 @@ object CaptionManager {
 
   def makeRequestAndManageResponse(token: String): Unit = {
     val captionResponse = Http(s"${Configuration.YOUTUBE_URL}&v=$token").asString.body
-    filterNouns(captionResponse, token)
+    processResponseBody(captionResponse, token)
   }
 
   def apply(token: String): Unit = {
