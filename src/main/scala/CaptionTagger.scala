@@ -4,6 +4,9 @@ import java.util.Scanner
 
 object CaptionTagger extends App {
 
+  os.write.append(os.Path(Configuration.LOGS_PATH) / "logs.txt", "")
+  os.remove(os.Path(Configuration.LOGS_PATH) / "logs.txt")
+
   val scanner = new Scanner(System.in)
   try{
     EntryFileOpener(Configuration.ENTRY_FILES_PATH+scanner.nextLine())

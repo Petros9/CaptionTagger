@@ -15,6 +15,7 @@ object ResultFileCreator {
   }
 
   def apply(token: String, rawCaption: String, mappedCaption: String, nounList: List[String]): Unit = {
+    os.write.append(os.Path(Configuration.RESULT_PATH) / "result.json", "")
     os.remove(os.Path(Configuration.RESULT_PATH) / "result.json")
     nounList.foreach(noun => {
       val result = WikipediaManager(noun)

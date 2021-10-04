@@ -18,7 +18,7 @@ object WikipediaManager {
       else returnLinkWithArticle(parsedResponse)
 
     } catch {
-      case _: MismatchedInputException => (Configuration.WIKIPEDIA_ERROR, s"the word $noun is not unequivocally", s"no wikipedia article for $noun", s"no wikipedia article for $noun")
+      case _: MismatchedInputException => (Configuration.WIKIPEDIA_ERROR, s"no wikipedia article for $noun", s"no wikipedia article for $noun", s"no wikipedia article for $noun")
     }
   }
 
