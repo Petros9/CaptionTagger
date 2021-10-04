@@ -3,7 +3,6 @@ import play.api.libs.json.{JsValue, Json}
 import scalaj.http.Http
 
 object WikipediaManager {
-
   def returnLinkWithArticle(parsedResponse: JsValue): (String, String, String) = {
     val link = parsedResponse \\ "page"
     val article = parsedResponse \\ "extract"
@@ -19,7 +18,7 @@ object WikipediaManager {
       else returnLinkWithArticle(parsedResponse)
 
     } catch {
-      case _: MismatchedInputException => (Configuration.WIKIPEDIA_FINDING_ERROR, "no wikipedia article", "no wikipedia article")
+      case _: MismatchedInputException => (Configuration.WIKIPEDIA_FINDING_ERROR, s"no wikipedia article for $noun", s"no wikipedia article for $noun")
     }
   }
 

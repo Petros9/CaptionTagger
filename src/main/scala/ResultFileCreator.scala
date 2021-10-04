@@ -1,7 +1,6 @@
-
 object ResultFileCreator {
 
-  def showResults(token: String, rawCaption: List[String], mappedCaption: List[String], link: String, article: String, rawArticle: String): Unit = {
+  def saveResults(token: String, rawCaption: List[String], mappedCaption: List[String], link: String, article: String, rawArticle: String): Unit = {
     println("###################")
 
     println(token)
@@ -17,11 +16,11 @@ object ResultFileCreator {
   def apply(token: String, rawCaption: List[String], mappedCaption: List[String], nounList: List[String]): Unit = {
     nounList.foreach(noun => {
       val result = WikipediaManager(noun)
-
       result match {
-        case (Configuration.WIKIPEDIA_FINDING_ERROR, message, _) => println(message)
-        case (_, _, _) => showResults(token, rawCaption, mappedCaption, result._1, result._2, result._3)
-      }})
+        case (Configuration.WIKIPEDIA_FINDING_ERROR, message, _) => ExceptionLogger(message)
+        case (_, _, _) => saveResults(token, rawCaption, mappedCaption, result._1, result._2, result._3)
+      }
+    })
   }
 
 }

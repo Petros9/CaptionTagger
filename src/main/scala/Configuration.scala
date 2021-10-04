@@ -4,4 +4,5 @@ object Configuration {
   val DISAMBIGUATION = "\"disambiguation\""
   val WIKIPEDIA_FINDING_ERROR = "error"
   val NOUN_POINTER = "*"
+  val LOGS_PATH = "/Users/piotrswiderski/IdeaProjects/CaptionTagger/logs"
 }
