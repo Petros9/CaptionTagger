@@ -50,9 +50,12 @@ The http request is made in the `makeRequestAndManageResponse` function. The res
  The object is responsible for all noun-related operations. The object uses only some simplified metrics to determine whether a word is noun or not. At first I wanted to use some internet dictionary API, however the ones I found were either request limited or required paid substribtion. Another more reliable way of finding a noun is using a local dictionary database. 
  
  Function `markPotentialNouns` marks words that are preceded by the articles or personal pronouns as potential nouns.
+ 
  Function `filterNouns` filters words that end with noun endings and are marked as potential nouns barring they: do not end with an adverb ending, are not passive versions of the verbs, are not words like same/next which occur quite often after the definite article. 
  
  *ResultFileCreator*
+ 
+ 
  
  *WikipediaManager*
  
