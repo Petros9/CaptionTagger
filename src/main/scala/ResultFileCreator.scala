@@ -1,24 +1,27 @@
+import play.api.libs.json.Json
+
 object ResultFileCreator {
 
-  def saveResults(token: String, rawCaption: List[String], mappedCaption: List[String], link: String, article: String, rawArticle: String): Unit = {
-    println("###################")
-
-    println(token)
-    println(rawCaption)
-    println(mappedCaption)
-    println(article)
-    println(rawArticle)
-    println(link)
-
-    println("###################")
+  def saveResults(token: String, rawCaption: String, mappedCaption: String, link: String, article: String, rawArticle: String): Unit = {
+    val result = Json.obj(
+      "token" -> token,
+      "raw_captions" -> Json.stringify(Json.parse(rawCaption)),
+      "plain_captions" -> mappedCaption,
+      "raw_article" -> rawArticle,
+      "article" -> article,
+      "link" -> link
+    )
+    os.write.append(os.Path(Configuration.RESULT_PATH) / "result.json", result.toString()+",")
   }
 
-  def apply(token: String, rawCaption: List[String], mappedCaption: List[String], nounList: List[String]): Unit = {
+  def apply(token: String, rawCaption: String, mappedCaption: String, nounList: List[String]): Unit = {
+    os.remove(os.Path(Configuration.RESULT_PATH) / "result.json")
     nounList.foreach(noun => {
       val result = WikipediaManager(noun)
       result match {
-        case (Configuration.WIKIPEDIA_FINDING_ERROR, message, _) => ExceptionLogger(message)
-        case (_, _, _) => saveResults(token, rawCaption, mappedCaption, result._1, result._2, result._3)
+        case (Configuration.WIKIPEDIA_ERROR, message, _, _) => ExceptionLogger(message)
+        case (Configuration.WIKIPEDIA_OK, _, _, _) => saveResults(token, rawCaption, mappedCaption, result._2, result._3, result._4)
+        case _ => ExceptionLogger("Unknown result")
       }
     })
   }
