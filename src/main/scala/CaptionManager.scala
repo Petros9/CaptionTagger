@@ -11,7 +11,7 @@ object CaptionManager {
       val mappedCaptions = captions.map(elem => elem.toString().replace(raw"\n", " ").replace("\"", ""))
       val potentialNoun = NounChecker.prepareWordList(mappedCaptions.toList)
 
-      val nouns = potentialNoun.map(NounChecker.isNoun).filter(elem => elem.nonEmpty).flatten.distinct.map(elem => elem.replace("*", ""))
+      val nouns = potentialNoun.map(NounChecker.isNoun).filter(elem => elem.nonEmpty).flatten.distinct.map(elem => elem.replace(Configuration.NOUN_POINTER, ""))
       ResultFileCreator(token, captions.map(elem => elem.toString()).toList, mappedCaptions.toList, nouns)
     } catch {
       case _: MismatchedInputException => println(s"No Youtube video for token: $token")

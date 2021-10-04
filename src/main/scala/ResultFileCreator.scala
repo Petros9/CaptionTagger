@@ -19,7 +19,7 @@ object ResultFileCreator {
       val result = WikipediaManager(noun)
 
       result match {
-        case ("error", message, _) => println(message)
+        case (Configuration.WIKIPEDIA_FINDING_ERROR, message, _) => println(message)
         case (_, _, _) => showResults(token, rawCaption, mappedCaption, result._1, result._2, result._3)
       }})
   }

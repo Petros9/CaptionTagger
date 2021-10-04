@@ -1,20 +1,25 @@
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
-import play.api.libs.json.Json
+import play.api.libs.json.{JsValue, Json}
 import scalaj.http.Http
 
 object WikipediaManager {
+
+  def returnLinkWithArticle(parsedResponse: JsValue): (String, String, String) = {
+    val link = parsedResponse \\ "page"
+    val article = parsedResponse \\ "extract"
+    (link.toString(), article.toString(), parsedResponse.toString())
+  }
+
   def processWikipediaResponse(noun: String, response: String): (String, String, String) = {
     try {
       val parsedResponse = Json.parse(response)
-      val link = parsedResponse \\ "page"
-      val article = parsedResponse \\ "extract"
       val articleType = parsedResponse \\ "type"
 
-      if(articleType.head.toString().equals("\"disambiguation\"")) ("error", s"the word $noun is not unequivocally", s"the word $noun is not unequivocally")
-      else (link.toString(), article.toString(), parsedResponse.toString())
+      if(articleType.head.toString().equals(Configuration.DISAMBIGUATION)) (Configuration.WIKIPEDIA_FINDING_ERROR, s"the word $noun is not unequivocally", s"the word $noun is not unequivocally")
+      else returnLinkWithArticle(parsedResponse)
 
     } catch {
-      case _: MismatchedInputException => ("error", "no wikipedia article", "now wikipedia article")
+      case _: MismatchedInputException => (Configuration.WIKIPEDIA_FINDING_ERROR, "no wikipedia article", "no wikipedia article")
     }
   }
 
