@@ -77,24 +77,17 @@ The http request is made in the `makeRequestAndManageResponse` function. The res
 
 *NounCheckerTest*
 
-`Filter noun-like words`
-The test checks whether `NounChecker.filterNouns()` function selects words which may be nouns (ex. posses a noun ending, contains a noun marker).
+The test `Filter noun-like words` checks whether `NounChecker.filterNouns()` function selects words which may be nouns (ex. posses a noun ending, contains a noun marker).
 
-`Mark potential nouns`
-The test checks if words that are preceded by possessive pronouns/articles are marked as potential nouns.
+The test `Mark potential nouns` checks if words that are preceded by possessive pronouns/articles are marked as potential nouns.
 
 *WikipediaRequestTest*
 
-`No wikipedia article`
+The test `No wikipedia article` checks whether the fact that there is no article about the word 'ggf' exists is marked in the logs.
 
-The test checks whether the fact that there is no article about the word 'ggf' exists is marked in the logs.
-
-`Word's ambiguity`
-The test checks whether the fact that there is no specific article about the 'great' word is marked in the logs. (as there is e.x. an article about great britain, great depression,...)
+The test `Word's ambiguity` checks whether the fact that there is no specific article about the 'great' word is marked in the logs. (as there is e.x. an article about great britain, great depression,...)
 
 
 *YoutubeRequestTest*
 
-`Wrong youtube token`
-
-The test checks whether the fact that there is no youtube video with a token 'qwerty' is marked in the logs.
+The test `Wrong youtube token` checks whether the fact that there is no youtube video with a token 'qwerty' is marked in the logs.
