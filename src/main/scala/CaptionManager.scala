@@ -4,21 +4,13 @@ import scalaj.http.Http
 
 object CaptionManager {
 
-  def isNoun(caption: String): List[String] = {
-    caption.split(' ').filter(word => {
-      if(word.endsWith("ity") || word.endsWith("ism") || word.endsWith("ion"))  true
-      else if(word.startsWith("*") && !word.endsWith("est") && !word.endsWith("ly") && !word.endsWith("ed") && !word.equals("*next") && !word.equals("*same")) true
-      else false
-    }).toList
-  }
-
   def selectNouns(response: String): List[String] = {
     val captions = Json.parse(response) \\ "utf8"
     val mappedCaptions = captions.map(elem => elem.toString().replace(raw"\n", " ").replace("\"", ""))
-    val potentialNoun = mappedCaptions.map(elem => elem
-      .replace(",", "").replace(".","").replace(" a ", "*").replace("the ", "*"))
+    val potentialNoun = NounChecker.prepareWordList(mappedCaptions.toList)
 
-    potentialNoun.map(isNoun).filter(elem => elem.nonEmpty).flatten.distinct.map(elem => elem.replace("*", "")).toList
+    potentialNoun.map(NounChecker.isNoun).filter(elem => elem.nonEmpty).flatten.distinct.map(elem => elem.replace("*", ""))
+    // tu najlepiej byloby robic zapytania do wikipedii, potrzebny jest tylko token
   }
 
   def makeRequestAndManageResponse(token: String): List[String] = {
@@ -40,7 +32,6 @@ object CaptionManager {
   }
 
   def findWikipediaArticle(noun: String): Unit = {
-    println(noun.capitalize)
     val wikipediaResponse = Http(s"${Configuration.WIKIPEDIA_URL}${noun.capitalize}").asString.body
     processWikipediaResponse(wikipediaResponse)
   }
@@ -48,6 +39,6 @@ object CaptionManager {
   def apply(token: String): Unit = {
     val captionNouns = makeRequestAndManageResponse(token)
     captionNouns.foreach(findWikipediaArticle)
-    // robienie wikipedii
+
   }
 }
