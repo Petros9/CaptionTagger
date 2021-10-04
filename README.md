@@ -41,6 +41,10 @@ CaptionTagger is the main application's object which contains the main function.
  
  *CaptionManager*
  
+CaptionManager is the object which makes a request to the youtube API, maps the result into the list of strings, then ask the NounChecker to select the nouns and passes the noun list to the ResultFileCreator.
+
+The http request is made in the `makeRequestAndManageResponse` function. The response body is then passed to the `processResponseBody` fuction, where the plain captions are tried to be extracted (if the video exists they are placed in the fields called "utf8"). Then the result if filtered from \n and " chars and the potential nouns are marked. Then by using the `NounChecker.filterNouns` function nouns are selected and the following parameters are passed to the `ResultFileCreator` object: (token, raw captions, plain captions, list of nouns).
+ 
  *NounChecker*
  
  *ResultFileCreator*
