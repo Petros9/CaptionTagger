@@ -25,9 +25,15 @@ This folder contains a file results.json where the end result list of (token, ra
  
  *Configuration*
  
+ This objects contains constants that are used in the application, includes: paths, urls, pointers, atom-like strings and others.
+ 
  *ExceptionLogger*
  
+This object is responsible for reporting exceptions which occured during app's operations. Reports are written into the logs.txt file which is placed in the logs folder.
+ 
  *CaptionTagger*
+ 
+CaptionTagger is the main application's object which contains the main function. At first the app makes sure, that the logs.txt file does not exists (in order to log each session seprarately), then the file name is taken from the keyboard. If a file with given name does not exists in the examples folder an exception is written to the console.
  
  *EntryFileOpener*
  
