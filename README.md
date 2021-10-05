@@ -51,7 +51,7 @@ The http request is made in the `makeRequestAndManageResponse` function. The res
  
  *NounChecker*
  
- The object is responsible for all noun-related operations. The object uses only some simplified metrics to determine whether a word is noun or not. At first I wanted to use some internet dictionary API, however the ones I found were either request limited or required paid substribtion. Another more reliable way of finding a noun is using a local dictionary database. 
+ The object is responsible for all noun-related operations. The object uses only some simplified metrics to determine whether a word is a noun or not. At first I wanted to use some internet dictionary API, however the ones I found were either request limited or required paid substribtion. Another more reliable way of finding a noun is using a local dictionary database. 
  
  Function `markPotentialNouns` marks words that are preceded by the articles or personal pronouns as potential nouns.
  
