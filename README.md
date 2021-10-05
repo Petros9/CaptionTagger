@@ -37,7 +37,7 @@ This object is responsible for reporting exceptions which occured during app's o
  
  *CaptionTagger*
  
-CaptionTagger is the main app's object. That's the place where `main` function is called. At first the app makes sure, that the logs.txt file does not exists (in order to log each session seprarately), then the file name is taken from the keyboard. If a file with given name does not exists in the examples folder an exception is written to the console.
+CaptionTagger is the main app's object. That's the place where `main` function is called. At first the app makes sure, that the logs.txt file does not exist (in order to log each session seprarately), then the file name is taken from the keyboard. If a file with given name does not exist in the examples folder an exception is written to the console.
  
  *EntryFileReader*
  
