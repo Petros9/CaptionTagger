@@ -1,7 +1,11 @@
 ***Caption Tagger***
 
-Caption tagger is a simple scala application which receives a file with a list of Youtube videos' ids, downloads their captions, selects nouns and looks for their articles on Wikipedia.
+Caption tagger is a simple scala application which receives on its entry a file with a list of Youtube videos' ids, downloads their captions, selects nouns and looks for their articles on Wikipedia.
+
 The end result is a file with a list that contains: video tokens, raw captions, plain captions, raw wikipedia articles, plain wikipedia articles, links to wikipedia articles.
+
+Used libraries: play-json (for JSON operations), os-lib (for file operations), scalaj-http (for http request operations) and scalatest (for tests).
+
 
 **Resources**
 
@@ -33,7 +37,7 @@ This object is responsible for reporting exceptions which occured during app's o
  
  *CaptionTagger*
  
-CaptionTagger is the main application's object which contains the main function. At first the app makes sure, that the logs.txt file does not exists (in order to log each session seprarately), then the file name is taken from the keyboard. If a file with given name does not exists in the examples folder an exception is written to the console.
+CaptionTagger is the main app's object. That's the place where `main` function is called. At first the app makes sure, that the logs.txt file does not exists (in order to log each session seprarately), then the file name is taken from the keyboard. If a file with given name does not exists in the examples folder an exception is written to the console.
  
  *EntryFileReader*
  
